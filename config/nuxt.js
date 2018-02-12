@@ -41,7 +41,7 @@ module.exports = {
     endpoints: {
       login: { url: '/api/login', method: 'post', propertyName: false },
       logout: { url: '/api/logout', method: 'get', propertyName: false },
-      user: { url: '/api/dirk', method: 'get', propertyName: false }
+      user: { url: '/api/user', method: 'get', propertyName: false }
     },
     fetchUserOnLogin: true,
     token: false,
