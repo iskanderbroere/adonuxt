@@ -1,9 +1,9 @@
 <template>
   <section class="container">
     <img src="~assets/img/logo.png" alt="Nuxt.js Logo" class="logo" />
-    <h1 class="title" v-if="this.$auth.state.loggedIn">
+    <p v-if="this.$auth.state.loggedIn">
       {{ this.$store.state.auth }}
-    </h1>
+    </p>
     <nuxt-link class="button" to="/about">
       About page
     </nuxt-link>
@@ -41,7 +41,9 @@
               password: this.password
             }
           })
-          .catch(e => console.error(e.response))
+          .catch(e => {
+            console.log(e.response)
+          })
       },
       async logout() {
         return this.$auth.logout().catch(e => console.error(e.response))

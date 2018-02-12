@@ -1,5 +1,7 @@
 'use strict'
 
+const Env = use('Env')
+
 module.exports = {
   /*
   |--------------------------------------------------------------------------
@@ -132,9 +134,9 @@ module.exports = {
   |
   */
   csrf: {
-    enable: true,
+    enable: Env.get('NODE_ENV') === 'development' ? false : true,
     methods: ['POST', 'PUT', 'DELETE'],
-    filterUris: ['/api/login'],
+    filterUris: ['/api/login', '/api/users'],
     cookieOptions: {
       httpOnly: false,
       sameSite: true,

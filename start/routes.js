@@ -17,9 +17,8 @@ const Route = use('Route')
 
 Route
   .group(() => {
-    Route
-      .resource('users', 'UserController')
-      .apiOnly()
+    Route.resource('users', 'UserController').apiOnly()
+    Route.resource('posts', 'PostController').apiOnly().middleware(['auth'])
     Route.get('dirk', 'UserController.show')
     Route.post('login', 'SessionController.store')
     Route.get('logout', 'SessionController.delete')

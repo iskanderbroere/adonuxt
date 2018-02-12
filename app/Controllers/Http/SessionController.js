@@ -20,7 +20,7 @@ class SessionController {
     }
     catch (e) {
       console.log(e)
-      response.send(e)
+      throw e
     }
     /**
      * We are authenticated.
