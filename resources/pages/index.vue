@@ -1,8 +1,8 @@
 <template>
   <section class="container">
     <img src="~assets/img/logo.png" alt="Nuxt.js Logo" class="logo" />
-    <h1 class="title">
-      {{ this.$auth.state }}
+    <h1 class="title" v-if="this.$auth.state.loggedIn">
+      {{ this.$store.state.auth }}
     </h1>
     <nuxt-link class="button" to="/about">
       About page
@@ -15,6 +15,7 @@
       <div>
         <a class="button" @click="login">Login</a>
         <a class="button" @click="logout">Logout</a>
+        <a class="button" @click="fetchUser">Fetch</a>
       </div>
     </form>
   </section>
@@ -24,7 +25,7 @@
   export default {
     data() {
       return {
-        username: 'hank@h2ank.nl',
+        username: 'test@test.nl',
         password: '123456'
       }
     },
@@ -40,14 +41,14 @@
               password: this.password
             }
           })
-          .catch(e => {
-            this.hasError = true
-          })
+          .catch(e => console.error(e.response))
       },
       async logout() {
-        return this.$auth.logout().catch(e => {
-          this.hasError = true
-        })
+        return this.$auth.logout().catch(e => console.error(e.response))
+      },
+      async fetchUser() {
+        console.log('Yes you clicked the button.')
+        return this.$auth.fetchUser().catch(e => console.error(e.response))
       }
     }
   }

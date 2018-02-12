@@ -39,12 +39,28 @@ module.exports = {
   ],
   auth: {
     endpoints: {
-      login: { url: '/api/login', method: 'post', propertyName: 'token' },
-      logout: { url: '/api/logout', method: 'get' },
-      user: { url: '/api/auth/user', method: 'get', propertyName: 'user' }
-    }
+      login: { url: '/api/login', method: 'post', propertyName: false },
+      logout: { url: '/api/logout', method: 'get', propertyName: false },
+      user: { url: '/api/dirk', method: 'get', propertyName: false }
+    },
+    fetchUserOnLogin: true,
+    token: false,
+    cookie: [
+      {
+        name: 'adonis-session',
+        options: {
+          path: '/'
+        }
+      },
+      {
+        name: 'adonis-session-values',
+        options: {
+          path: '/'
+        }
+      }
+    ]
   },
-  css: ['~assets/css/main.css'],
+  css: ['~/assets/css/main.css'],
   /*
   ** Customize the progress-bar color
   */

@@ -4,30 +4,21 @@ const User = use('App/Models/User')
 // const { validate } = use('Validator')
 
 class UserController {
-  async index () {
-    const users = await User.all()
-    return users
-  }
-  async login ({ request, auth }) {
-    const { email, password } = request.all()
-    await auth.attempt(email, password)
-
-    return 'Logged in successfully'
-  }
-  show ({ auth, params }) {
-    if (auth.user.id !== Number(params.id)) {
-      return 'You cannot see someone else profile'
-    }
+  show({ auth, response }) {
+    // if (auth.user.id !== Number(params.id)) {
+    //   return 'You cannot see someone else profile'
+    // }
+    // console.log('Get user', auth.user)
     return auth.user
   }
-  async store ({ session, request, response }) {
+  async store({ session, request, response }) {
     /**
      * Getting needed parameters.
      *
      * ref: http://adonisjs.com/docs/4.0/request#_only
      */
     const data = request.only(['username', 'email', 'password', 'password_confirmation'])
-    console.log(data)
+    console.log('Post user', data)
     /**
      * Validating our data.
      *
@@ -61,7 +52,7 @@ class UserController {
      * ref: http://adonisjs.com/docs/4.0/lucid#_create
      */
     const newUser = await User.create(data)
-    console.log(newUser)
+    console.log('New user is :', newUser)
   }
 }
 

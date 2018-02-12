@@ -16,13 +16,11 @@ class SessionController {
      * ref: http://adonisjs.com/docs/4.0/authentication#_attempt_uid_password
      */
     try {
-      const authenticate = await auth.attempt(username, password)
-      console.log(authenticate)
-      return authenticate
-    } catch (e) {
-      console.error(e)
-      const error = new Error(e)
-      return e
+      return await auth.attempt(username, password)
+    }
+    catch (e) {
+      console.log(e)
+      response.send(e)
     }
     /**
      * We are authenticated.
@@ -37,6 +35,7 @@ class SessionController {
      */
     try {
       await auth.logout()
+      console.log('Successful logout')
       return { message: 'User succesfully logged out!' }
     } catch (error) {
       console.error(error)

@@ -20,6 +20,7 @@ Route
     Route
       .resource('users', 'UserController')
       .apiOnly()
+    Route.get('dirk', 'UserController.show')
     Route.post('login', 'SessionController.store')
     Route.get('logout', 'SessionController.delete')
   })
