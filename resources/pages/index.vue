@@ -49,7 +49,6 @@
         return this.$auth.logout().catch(e => console.error(e.response))
       },
       async fetchUser() {
-        console.log('Yes you clicked the button.')
         return this.$auth.fetchUser().catch(e => console.error(e.response))
       }
     }

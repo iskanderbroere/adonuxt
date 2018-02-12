@@ -17,11 +17,11 @@ const Route = use('Route')
 
 Route
   .group(() => {
-    Route.resource('users', 'UserController').apiOnly()
+    Route.resource('users', 'UserController').apiOnly().middleware(['auth'])
     Route.resource('posts', 'PostController').apiOnly().middleware(['auth'])
-    Route.get('user', 'UserController.show')
+    Route.get('user', 'UserController.show').middleware(['auth'])
     Route.post('login', 'SessionController.store')
-    Route.get('logout', 'SessionController.delete')
+    Route.get('logout', 'SessionController.delete').middleware(['auth'])
   })
   .prefix('api')
 
