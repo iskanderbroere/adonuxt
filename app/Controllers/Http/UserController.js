@@ -1,24 +1,25 @@
-'use strict'
+"use strict"
 
-const User = use('App/Models/User')
+const User = use("App/Models/User")
 // const { validate } = use('Validator')
 
 class UserController {
-  show({ auth, response }) {
-    // if (auth.user.id !== Number(params.id)) {
-    //   return 'You cannot see someone else profile'
-    // }
-    // console.log('Get user', auth.user)
-    return auth.user
+  show({ auth }) {
+    const { username, email } = auth.user
+    return { username, email }
   }
-  async store({ session, request, response }) {
+  async store({ request }) {
     /**
      * Getting needed parameters.
      *
      * ref: http://adonisjs.com/docs/4.0/request#_only
      */
-    const data = request.only(['username', 'email', 'password', 'password_confirmation'])
-    console.log('Post user', data)
+    const data = request.only([
+      "username",
+      "email",
+      "password",
+      "password_confirmation"
+    ])
     /**
      * Validating our data.
      *
@@ -51,8 +52,7 @@ class UserController {
      *
      * ref: http://adonisjs.com/docs/4.0/lucid#_create
      */
-    const newUser = await User.create(data)
-    console.log('New user is :', newUser)
+    await User.create(data)
   }
 }
 

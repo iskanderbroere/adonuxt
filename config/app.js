@@ -1,6 +1,6 @@
-'use strict'
+"use strict"
 
-const Env = use('Env')
+const Env = use("Env")
 
 module.exports = {
   /*
@@ -12,7 +12,7 @@ module.exports = {
   | to encrypted cookies, sessions and other sensitive data.
   |
   */
-  appKey: Env.get('APP_KEY'),
+  appKey: Env.get("APP_KEY"),
 
   http: {
     /*
@@ -65,7 +65,7 @@ module.exports = {
     | in request url.
     |
     */
-    jsonpCallback: 'callback',
+    jsonpCallback: "callback",
 
     /*
     |--------------------------------------------------------------------------
@@ -91,7 +91,7 @@ module.exports = {
     | production to optimize view loading time.
     |
     */
-    cache: Env.get('CACHE_VIEWS', true)
+    cache: Env.get("CACHE_VIEWS", true)
   },
 
   static: {
@@ -108,7 +108,7 @@ module.exports = {
     | ignore, deny, allow
     |
     */
-    dotfiles: 'ignore',
+    dotfiles: "ignore",
 
     /*
     |--------------------------------------------------------------------------
@@ -145,7 +145,7 @@ module.exports = {
     | file, database
     |
     */
-    driver: 'file',
+    driver: "file",
 
     /*
     |--------------------------------------------------------------------------
@@ -157,7 +157,7 @@ module.exports = {
     | based on HTTP headers/query string.
     |
     */
-    locale: 'en'
+    locale: "en"
   },
 
   logger: {
@@ -172,7 +172,7 @@ module.exports = {
     | Available drivers are: `file` and `console`.
     |
     */
-    transport: 'console',
+    transport: "console",
 
     /*
     |--------------------------------------------------------------------------
@@ -184,9 +184,9 @@ module.exports = {
     |
     */
     console: {
-      driver: 'console',
-      name: 'adonis-app',
-      level: 'info'
+      driver: "console",
+      name: "adonis-app",
+      level: "info"
     },
 
     /*
@@ -201,10 +201,10 @@ module.exports = {
     |
     */
     file: {
-      driver: 'file',
-      name: 'adonis-app',
-      filename: 'adonis.log',
-      level: 'info'
+      driver: "file",
+      name: "adonis-app",
+      filename: "adonis.log",
+      level: "info"
     }
   }
 }

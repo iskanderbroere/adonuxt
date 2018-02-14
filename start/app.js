@@ -1,4 +1,6 @@
-'use strict'
+"use strict"
+
+const path = require("path")
 
 /*
 |--------------------------------------------------------------------------
@@ -11,14 +13,15 @@
 |
 */
 const providers = [
-  '@adonisjs/framework/providers/AppProvider',
-  '@adonisjs/framework/providers/ViewProvider',
-  '@adonisjs/lucid/providers/LucidProvider',
-  '@adonisjs/bodyparser/providers/BodyParserProvider',
-  '@adonisjs/cors/providers/CorsProvider',
-  '@adonisjs/shield/providers/ShieldProvider',
-  '@adonisjs/session/providers/SessionProvider',
-  '@adonisjs/auth/providers/AuthProvider'
+  "@adonisjs/framework/providers/AppProvider",
+  "@adonisjs/framework/providers/ViewProvider",
+  "@adonisjs/lucid/providers/LucidProvider",
+  "@adonisjs/bodyparser/providers/BodyParserProvider",
+  "@adonisjs/cors/providers/CorsProvider",
+  "@adonisjs/shield/providers/ShieldProvider",
+  "@adonisjs/session/providers/SessionProvider",
+  "@adonisjs/auth/providers/AuthProvider",
+  path.join(__dirname, "..", "providers", "Nuxt/provider")
 ]
 
 /*
@@ -30,9 +33,7 @@ const providers = [
 | Providers for migrations, tests etc.
 |
 */
-const aceProviders = [
-  '@adonisjs/lucid/providers/MigrationsProvider'
-]
+const aceProviders = ["@adonisjs/lucid/providers/MigrationsProvider"]
 
 /*
 |--------------------------------------------------------------------------
@@ -46,7 +47,9 @@ const aceProviders = [
 |   { Route: 'Adonis/Src/Route' }
 |
 */
-const aliases = {}
+const aliases = {
+  Nuxt: "Adonuxt/Nuxt"
+}
 
 /*
 |--------------------------------------------------------------------------
@@ -56,8 +59,6 @@ const aliases = {}
 | Here you store ace commands for your package
 |
 */
-const commands = [
-  'App/Commands/NuxtBuild'
-]
+const commands = []
 
 module.exports = { providers, aceProviders, aliases, commands }

@@ -1,9 +1,9 @@
-'use strict'
+"use strict"
 
-const Post = use('App/Models/Post')
+const Post = use("App/Models/Post")
 
 class PostController {
-  async index({ view }) {
+  async index() {
     /**
      * Fetch all posts inside our database.
      *
@@ -17,17 +17,16 @@ class PostController {
      *
      * ref: http://adonisjs.com/docs/4.0/views
      */
-    console.log(posts.toJSON())
     return posts.toJSON()
   }
 
-  async store({ session, request, response }) {
+  async store({ request }) {
     /**
      * Getting needed parameters.
      *
      * ref: http://adonisjs.com/docs/4.0/request#_only
      */
-    const data = request.only(['title', 'body'])
+    const data = request.only(["title", "body"])
 
     /**
      * Validating our data.
@@ -55,18 +54,17 @@ class PostController {
      *
      * ref: http://adonisjs.com/docs/4.0/lucid#_create
      */
-    const newPost = await Post.create(data)
-    console.log('newPost: ', newPost)
+    await Post.create(data)
     // return response.redirect('/')
   }
 
-  async update({ params, session, request, response }) {
+  async update({ params, request, response }) {
     /**
      * Getting needed parameters.
      *
      * ref: http://adonisjs.com/docs/4.0/request#_only
      */
-    const data = request.only(['title', 'body'])
+    const data = request.only(["title", "body"])
 
     /**
      * Validating our data.
@@ -99,7 +97,7 @@ class PostController {
     post.merge(data)
     await post.save()
 
-    return response.redirect('/')
+    return response.redirect("/")
   }
 
   async delete({ params, response }) {
@@ -111,7 +109,7 @@ class PostController {
     const post = await Post.findOrFail(params.id)
     await post.delete()
 
-    return response.redirect('/')
+    return response.redirect("/")
   }
 }
 

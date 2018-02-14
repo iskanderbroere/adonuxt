@@ -1,6 +1,6 @@
-'use strict'
+"use strict"
 
-const Env = use('Env')
+const Env = use("Env")
 
 module.exports = {
   /*
@@ -29,8 +29,7 @@ module.exports = {
     | }
     |
     */
-    directives: {
-    },
+    directives: {},
     /*
     |--------------------------------------------------------------------------
     | Report only
@@ -97,7 +96,7 @@ module.exports = {
   |
   | Learn more at https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options
   */
-  xframe: 'DENY',
+  xframe: "DENY",
 
   /*
   |--------------------------------------------------------------------------
@@ -134,13 +133,13 @@ module.exports = {
   |
   */
   csrf: {
-    enable: Env.get('NODE_ENV') === 'development' ? false : true,
-    methods: ['POST', 'PUT', 'DELETE'],
-    filterUris: ['/api/login', '/api/users'],
+    enable: Env.get("NODE_ENV") === "development" ? false : true,
+    methods: ["POST", "PUT", "DELETE"],
+    filterUris: ["/api/login", "/api/users"],
     cookieOptions: {
       httpOnly: false,
       sameSite: true,
-      path: '/',
+      path: "/",
       maxAge: 7200
     }
   }

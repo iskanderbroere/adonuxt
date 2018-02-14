@@ -30,7 +30,7 @@ export default {
     this.$refs.username.focus()
   },
   methods: {
-    login() {
+    async login() {
       return this.$auth
         .login({
           data: {
@@ -39,14 +39,14 @@ export default {
           }
         })
         .catch(e => {
-          console.error("HERRO", e)
+          console.log(e.response)
         })
     },
     async logout() {
-      return this.$auth.logout().catch(e => console.error(e))
+      return this.$auth.logout().catch(e => console.error(e.response))
     },
     async fetchUser() {
-      return this.$auth.fetchUser().catch(e => console.error(e))
+      return this.$auth.fetchUser().catch(e => console.error(e.response))
     }
   }
 }

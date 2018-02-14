@@ -1,4 +1,4 @@
-'use strict'
+"use strict"
 
 module.exports = {
   /*
@@ -13,7 +13,7 @@ module.exports = {
   | Available Serializers - lucid, database
   |
   */
-  authenticator: 'session',
+  authenticator: "session",
 
   /*
   |--------------------------------------------------------------------------
@@ -25,11 +25,11 @@ module.exports = {
   |
   */
   session: {
-    serializer: 'lucid',
-    model: 'App/Models/User',
-    scheme: 'session',
-    uid: 'email',
-    password: 'password'
+    serializer: "lucid",
+    model: "App/Models/User",
+    scheme: "session",
+    uid: "email",
+    password: "password"
   },
 
   /*
@@ -46,11 +46,11 @@ module.exports = {
   |
   */
   basic: {
-    serializer: 'lucid',
-    model: 'App/Models/User',
-    scheme: 'basic',
-    uid: 'email',
-    password: 'password'
+    serializer: "lucid",
+    model: "App/Models/User",
+    scheme: "basic",
+    uid: "email",
+    password: "password"
   },
 
   /*
@@ -63,13 +63,13 @@ module.exports = {
   |
   */
   jwt: {
-    serializer: 'lucid',
-    model: 'App/Models/User',
-    scheme: 'jwt',
-    uid: 'email',
-    password: 'password',
+    serializer: "lucid",
+    model: "App/Models/User",
+    scheme: "jwt",
+    uid: "email",
+    password: "password",
     options: {
-      secret: 'self::app.appKey'
+      secret: "verysecret"
     }
   }
 }

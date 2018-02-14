@@ -1,4 +1,4 @@
-'use strict'
+"use strict"
 
 /*
 |--------------------------------------------------------------------------
@@ -13,16 +13,19 @@
 |
 */
 
-const Route = use('Route')
+const Route = use("Route")
 
-Route
-  .group(() => {
-    Route.resource('users', 'UserController').apiOnly().middleware(['auth'])
-    Route.resource('posts', 'PostController').apiOnly().middleware(['auth'])
-    Route.get('user', 'UserController.show').middleware(['auth'])
-    Route.post('login', 'SessionController.store')
-    Route.get('logout', 'SessionController.delete').middleware(['auth'])
-  })
-  .prefix('api')
+Route.group(() => {
+  Route.post("login", "SessionController.store")
+}).prefix("api")
 
-Route.any('*', 'NuxtController.render')
+Route.group(() => {
+  Route.get("user", "UserController.show")
+  Route.resource("users", "UserController").apiOnly()
+  Route.resource("posts", "PostController").apiOnly()
+  Route.get("logout", "SessionController.delete")
+})
+  .prefix("api")
+  .middleware(["auth"])
+
+Route.any("*", "NuxtController.render")

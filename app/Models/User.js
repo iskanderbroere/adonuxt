@@ -1,9 +1,9 @@
-'use strict'
+"use strict"
 
-const Model = use('Model')
+const Model = use("Model")
 
 class User extends Model {
-  static boot () {
+  static boot() {
     super.boot()
 
     /**
@@ -13,7 +13,7 @@ class User extends Model {
      * Look at `app/Models/Hooks/User.js` file to
      * check the hashPassword method
      */
-    this.addHook('beforeSave', 'User.hashPassword')
+    this.addHook("beforeSave", "User.hashPassword")
   }
 
   /**
@@ -26,8 +26,8 @@ class User extends Model {
    *
    * @return {Object}
    */
-  tokens () {
-    return this.hasMany('App/Models/Token')
+  tokens() {
+    return this.hasMany("App/Models/Token")
   }
 }
 

@@ -1,7 +1,7 @@
-'use strict'
+"use strict"
 
 class SessionController {
-  async store({ auth, request, response, session }) {
+  async store({ auth, request }) {
     /**
      * Getting needed parameters.
      *
@@ -17,9 +17,7 @@ class SessionController {
      */
     try {
       return await auth.attempt(username, password)
-    }
-    catch (e) {
-      console.log(e)
+    } catch (e) {
       throw e
     }
     /**
@@ -27,7 +25,7 @@ class SessionController {
      */
   }
 
-  async delete({ auth, response }) {
+  async delete({ auth }) {
     /**
      * Logout the user.
      *
@@ -35,10 +33,9 @@ class SessionController {
      */
     try {
       await auth.logout()
-      console.log('Successful logout')
-      return { message: 'User succesfully logged out!' }
+      return { message: "User succesfully logged out!" }
     } catch (error) {
-      console.error(error)
+      return error
     }
   }
 }
