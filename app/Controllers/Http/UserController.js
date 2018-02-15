@@ -4,9 +4,11 @@ const User = use("App/Models/User")
 // const { validate } = use('Validator')
 
 class UserController {
-  show({ auth }) {
-    const { username, email } = auth.user
-    return { username, email }
+  async index() {
+    return User.all()
+  }
+  async show({ auth }) {
+    return await auth.getUser()
   }
   async store({ request }) {
     /**

@@ -12,6 +12,7 @@
       />
       <v-text-field
         label="Password"
+        type="password"
         v-model="password"
         required
       />
@@ -29,7 +30,7 @@
 <script>
 export default {
   data: () => ({
-    username: "test@test.nl",
+    username: "hen@hen.nl",
     password: "123456",
     valid: true
   }),
@@ -38,24 +39,16 @@ export default {
   },
   methods: {
     async login() {
-      if (this.$refs.form.validate()) {
-        return this.$auth
-          .login({
-            data: {
-              username: this.username,
-              password: this.password
-            }
-          })
-          .catch(e => {
-            console.log(e.response)
-          })
+      try {
+        return await this.$auth.login({
+          data: {
+            username: this.username,
+            password: this.password
+          }
+        })
+      } catch (error) {
+        this.$store.commit("addError", error)
       }
-    },
-    async logout() {
-      return this.$auth.logout().catch(e => console.error(e.response))
-    },
-    async fetchUser() {
-      return this.$auth.fetchUser().catch(e => console.error(e.response))
     }
   }
 }

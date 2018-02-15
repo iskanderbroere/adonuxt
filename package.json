@@ -7,7 +7,7 @@
   "private": true,
   "main": "server.js",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development adonis serve --dev --debug",
+    "dev": "cross-env NODE_ENV=development adonis serve --dev",
     "build": "nuxt build -c config/nuxt.js",
     "start": "cross-env NODE_ENV=production node server.js",
     "precommit": "npm run lint",

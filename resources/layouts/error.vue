@@ -16,9 +16,7 @@ export default {
   props: {
     error: {
       type: Object,
-      default: function() {
-        return {}
-      }
+      default: () => {}
     }
   }
 }

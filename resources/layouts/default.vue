@@ -1,5 +1,6 @@
 <template>
   <v-app>
+    <error-snackbar v-for="error in errors" :key="error.dateKey" :error="error.message" />
     <v-navigation-drawer
       clipped
       v-model="drawer"
@@ -59,7 +60,13 @@
 </template>
 
 <script>
+import { mapState } from "vuex"
+import errorSnackbar from "~/components/errorSnackbar.vue"
+
 export default {
+  components: {
+    "error-snackbar": errorSnackbar
+  },
   data() {
     return {
       drawer: false,
@@ -69,9 +76,17 @@ export default {
       ]
     }
   },
+  computed: mapState({
+    errors: state => state.errors
+  }),
   methods: {
     async logout() {
-      return this.$auth.logout().catch(e => console.error(e.response))
+      try {
+        return await this.$auth.logout()
+      } catch (error) {
+        this.$store.commit("addError", error)
+      }
+      this.$router.push("login")
     }
   }
 }

@@ -4,23 +4,11 @@ const Post = use("App/Models/Post")
 
 class PostController {
   async index() {
-    /**
-     * Fetch all posts inside our database.
-     *
-     * ref: http://adonisjs.com/docs/4.0/lucid#_all
-     */
-    const posts = await Post.all()
-
-    /**
-     * Render the view 'posts.index'
-     * with the posts fetched as data.
-     *
-     * ref: http://adonisjs.com/docs/4.0/views
-     */
-    return posts.toJSON()
+    return await Post.all()
   }
 
   async store({ request }) {
+    console.log("HIII")
     /**
      * Getting needed parameters.
      *

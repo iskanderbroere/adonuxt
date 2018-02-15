@@ -3,6 +3,7 @@
 const resolve = require("path").resolve
 
 module.exports = {
+  mode: "universal",
   head: {
     title: "Adonuxt",
     meta: [
@@ -33,15 +34,28 @@ module.exports = {
     ]
   },
   modules: ["@nuxtjs/axios", "@nuxtjs/auth"],
+  axios: {
+    baseURL: "/api",
+    credentials: true,
+    debug: true
+  },
   auth: {
     endpoints: {
-      login: { url: "/api/login", method: "post", propertyName: false },
-      logout: { url: "/api/logout", method: "get", propertyName: false },
-      user: { url: "/api/user", method: "get", propertyName: false }
+      login: { url: "/login", method: "post", propertyName: false },
+      logout: { url: "/logout", method: "get", propertyName: false },
+      user: { url: "/user", method: "get", propertyName: false }
     },
     fetchUserOnLogin: true,
     token: false,
-    cookie: false
+    cookie: {
+      name: "adonis-session",
+      options: {
+        path: "/"
+      }
+    }
+  },
+  router: {
+    middleware: ["auth"]
   },
   build: {
     vendor: ["~/plugins/vuetify.js"],
