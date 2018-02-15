@@ -30,7 +30,3 @@ lib-cov
 
 # sqlite db
 database/*.sqlite
-database/*.sqlite3
-*.sqlite3
-*.sqlite
-database/development.sqlite
