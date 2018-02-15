@@ -16,14 +16,14 @@
 const Route = use("Route")
 
 Route.group(() => {
-  Route.post("login", "SessionController.store")
+  Route.post("login", "TokenController.store")
 }).prefix("api")
 
 Route.group(() => {
   Route.get("user", "UserController.show")
   Route.resource("users", "UserController").apiOnly()
   Route.resource("posts", "PostController").apiOnly()
-  Route.get("logout", "SessionController.delete")
+  Route.get("logout", "TokenController.delete")
 })
   .prefix("api")
   .middleware("auth")

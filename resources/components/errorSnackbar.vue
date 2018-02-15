@@ -1,6 +1,8 @@
 <template>
   <v-snackbar
     :timeout="5000"
+    label="error"
+    color="error"
     multi-line
     v-model="snackbar"
   >

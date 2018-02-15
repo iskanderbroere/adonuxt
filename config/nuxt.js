@@ -1,5 +1,4 @@
 "use strict"
-
 const resolve = require("path").resolve
 
 module.exports = {
@@ -29,36 +28,36 @@ module.exports = {
       {
         rel: "stylesheet",
         href:
-          "https://fonts.googleapis.com/css?family=Work+Sans|Material+Icons|Bungee"
+          "https://fonts.googleapis.com/css?family=Space+Mono|Material+Icons|Bungee"
       }
     ]
   },
   modules: ["@nuxtjs/axios", "@nuxtjs/auth"],
   axios: {
     baseURL: "/api",
-    credentials: true,
     debug: true
   },
   auth: {
     endpoints: {
-      login: { url: "/login", method: "post", propertyName: false },
+      login: { url: "/login", method: "post", propertyName: "token" },
       logout: { url: "/logout", method: "get", propertyName: false },
       user: { url: "/user", method: "get", propertyName: false }
     },
     fetchUserOnLogin: true,
-    token: false,
+    token: {
+      type: "Bearer",
+      name: "token"
+    },
     cookie: {
-      name: "adonis-session",
+      name: "token",
       options: {
         path: "/"
       }
     }
   },
-  router: {
-    middleware: ["auth"]
-  },
+  plugins: ["~/plugins/vuetify.js", "~/plugins/axios"],
   build: {
-    vendor: ["~/plugins/vuetify.js"],
+    vendor: ["~/plugins/vuetify.js", "~/plugins/axios"],
     extractCSS: true
   },
   css: ["~/assets/css/main.styl"],

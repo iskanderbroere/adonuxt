@@ -40,13 +40,6 @@
         Adonuxt
       </v-toolbar-title>
       <v-spacer/>
-      <v-toolbar-items v-if="this.$auth.state.loggedIn" class="hidden-sm-and-down">
-        <v-btn flat>{{ this.$auth.state.user.username }}</v-btn>
-        <v-btn flat @click.stop="logout">Log out</v-btn>
-      </v-toolbar-items>
-      <v-toolbar-items v-else class="hidden-sm-and-down">
-        <v-btn to="/login" flat>Log in</v-btn>
-      </v-toolbar-items>
     </v-toolbar>
     <v-content class="mt-4">
       <nuxt />
@@ -72,12 +65,13 @@ export default {
       drawer: false,
       items: [
         { icon: "apps", title: "Welcome", to: "/" },
-        { icon: "bubble_chart", title: "login", to: "/login" }
+        { icon: "bubble_chart", title: "login", to: "/login" },
+        { icon: "bubble_chart", title: "posts", to: "/posts" }
       ]
     }
   },
   computed: mapState({
-    errors: state => state.errors
+    errors: "errors"
   }),
   methods: {
     async logout() {
@@ -86,7 +80,6 @@ export default {
       } catch (error) {
         this.$store.commit("addError", error)
       }
-      this.$router.push("login")
     }
   }
 }

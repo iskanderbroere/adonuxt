@@ -1,7 +1,7 @@
 "use strict"
 
 class NuxtController {
-  async render({ request, response, session }) {
+  async render({ request, response }) {
     const NuxtService = await use("Nuxt")
 
     /**
@@ -18,7 +18,7 @@ class NuxtController {
      * values. This will make sure features like CSRF protection works as
      * expected.
      */
-    await session.commit()
+    // await session.commit()
 
     /**
      * Finally handover request to nuxt

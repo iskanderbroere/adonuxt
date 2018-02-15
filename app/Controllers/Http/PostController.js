@@ -8,7 +8,6 @@ class PostController {
   }
 
   async store({ request }) {
-    console.log("HIII")
     /**
      * Getting needed parameters.
      *
