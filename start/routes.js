@@ -24,8 +24,6 @@ Route.group(() => {
   Route.resource("users", "UserController").apiOnly()
   Route.resource("posts", "PostController").apiOnly()
   Route.get("logout", "SessionController.delete")
-})
-  .prefix("api")
-  .middleware(["auth"])
+}).prefix("api")
 
 Route.any("*", "NuxtController.render")

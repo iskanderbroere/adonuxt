@@ -1,8 +1,7 @@
 <template>
   <v-app>
     <v-navigation-drawer
-      :mini-variant.sync="miniVariant"
-      :clipped="clipped"
+      clipped
       v-model="drawer"
       fixed
       app
@@ -24,35 +23,37 @@
         </v-list-tile>
       </v-list>
     </v-navigation-drawer>
-    <v-toolbar fixed app :clipped-left="clipped">
-      <v-toolbar-side-icon @click="drawer = !drawer"/>
-      <v-btn
-        icon
-        @click.stop="miniVariant = !miniVariant"
-      >
-        <v-icon v-html="miniVariant ? 'chevron_right' : 'chevron_left'"/>
-      </v-btn>
-      <v-btn
-        icon
-        @click.stop="clipped = !clipped"
-      >
-        <v-icon>web</v-icon>
-      </v-btn>
-      <v-btn
-        icon
-        @click.stop="fixed = !fixed"
-      >
-        <v-icon>remove</v-icon>
-      </v-btn>
-      <v-toolbar-title v-text="title"/>
+    <v-toolbar 
+      fixed 
+      app 
+      clipped-left
+      height="100"
+      class="secondary"
+      dark>
+      <div @click="drawer = !drawer" class="hamburger hamburger--collapse" :class="{ 'is-active': drawer }">
+        <div class="hamburger-box">
+          <div class="hamburger-inner"/>
+        </div>
+      </div>
+      <v-toolbar-title class="display-2">
+        Adonuxt
+      </v-toolbar-title>
+      <v-spacer/>
+      <v-toolbar-items v-if="this.$auth.state.loggedIn" class="hidden-sm-and-down">
+        <v-btn flat>{{ this.$auth.state.user.username }}</v-btn>
+        <v-btn flat @click.stop="logout">Log out</v-btn>
+      </v-toolbar-items>
+      <v-toolbar-items v-else class="hidden-sm-and-down">
+        <v-btn to="/login" flat>Log in</v-btn>
+      </v-toolbar-items>
     </v-toolbar>
-    <v-content>
-      <v-container>
-        <nuxt />
-      </v-container>
+    <v-content class="mt-4">
+      <nuxt />
     </v-content>
-    <v-footer :fixed="fixed" app>
-      <span>&copy; 2017</span>
+    <v-footer class="pa-4" app>
+      <v-spacer/>
+      <div><v-icon class="text-xs-center">copyright</v-icon> {{ new Date().getFullYear() }}</div>
+      <v-spacer/>
     </v-footer>
   </v-app>
 </template>
@@ -61,16 +62,16 @@
 export default {
   data() {
     return {
-      clipped: false,
-      drawer: true,
-      fixed: false,
+      drawer: false,
       items: [
         { icon: "apps", title: "Welcome", to: "/" },
-        { icon: "bubble_chart", title: "Inspire", to: "/inspire" }
-      ],
-      miniVariant: false,
-      right: true,
-      title: "BONAS"
+        { icon: "bubble_chart", title: "login", to: "/login" }
+      ]
+    }
+  },
+  methods: {
+    async logout() {
+      return this.$auth.logout().catch(e => console.error(e.response))
     }
   }
 }

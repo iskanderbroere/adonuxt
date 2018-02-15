@@ -1,15 +1,28 @@
+@require './hamburger'
+$body-font-family = 'Work Sans', system-ui;
+$headings := {
+  h1: { font-family: Bungee, size: 112px, weight: 400, line-height: 1, letter-spacing: -.04em },
+  h2: { font-family: Bungee, size: 56px, weight: 400, line-height: 1.35, letter-spacing: -.02em },
+  h3: { font-family: Bungee, size: 45px, weight: 400, line-height: 48px, letter-spacing: normal },
+  h4: { size: 34px, weight: 700, line-height: 40px, letter-spacing: normal },
+  h5: { size: 24px, weight: 700, line-height: 32px, letter-spacing: normal },
+  h6: { size: 20px, weight: 700, line-height: 1, letter-spacing: .02em },
+  subheading: { font-family: Bungee, size: 16px, weight: 400 },
+  body-2: { size: 14px, weight: 700 },
+  body-1: { size: 14px, weight: 700 },
+  caption: { size: 12px, weight: 700 },
+  button: { size: 14px, weight: 700 }
+}
 @require '~vuetify/src/stylus/main.styl'
 
-.page
-  @extend .fade-transition
+html
+  overflow-y scroll !important
+.display-4, .display-3, .display-2, .display-1, .headline, .title, .subheading, .body-2, .body-1, .caption
+  font-family Bungee
+.btn
+  font-weight 700
+.page-enter-active, .page-leave-active
+  transition opacity .2s
 
-html, body {
-  color: #2e2f30;
-  font-family: "Source Sans Pro", Arial, sans-serif;
-}
-.page-enter-active, .page-leave-active {
-  transition: opacity .2s
-}
-.page-enter, .page-leave-active {
-  opacity: 0
-}
+.page-enter, .page-leave-active
+  opacity 0

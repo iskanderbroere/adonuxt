@@ -1,5 +1,5 @@
 <template>
-  <section class="container">
+  <v-container>
     <p v-if="this.$auth.state.loggedIn">
       {{ this.$store.state.auth }}
     </p>
@@ -15,7 +15,7 @@
         <a class="button" @click="fetchUser">Fetch</a>
       </div>
     </form>
-  </section>
+  </v-container>
 </template>
 
 <script>

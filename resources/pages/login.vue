@@ -1,46 +1,55 @@
 <template>
-  <section class="container">
-    <p v-if="this.$auth.state.loggedIn">
-      {{ this.$store.state.auth }}
-    </p>
-    <nuxt-link class="button" to="/about">
-      About page
-    </nuxt-link>
-    <form @keydown.enter="login">
-      <input v-model="username" placeholder="Use any username" ref="username" >
-      <input type="password" v-model="password" placeholder="Use '123'" >
-      <div>
-        <a class="button" @click="login">Login</a>
-        <a class="button" @click="logout">Logout</a>
-        <a class="button" @click="fetchUser">Fetch</a>
-      </div>
-    </form>
-  </section>
+  <v-layout column justify-center align-center>
+    <v-form @submit.prevent="login"
+            v-model="valid"
+            ref="form"
+            lazy-validation>
+      <v-text-field
+        label="Username"
+        v-model="username"
+        ref="username"
+        required
+      />
+      <v-text-field
+        label="Password"
+        v-model="password"
+        required
+      />
+
+      <v-btn
+        type="submit"
+        :disabled="!valid"
+      >
+        Log in
+      </v-btn>
+    </v-form>
+  </v-layout>
 </template>
 
 <script>
 export default {
-  data() {
-    return {
-      username: "test@test.nl",
-      password: "123456"
-    }
-  },
+  data: () => ({
+    username: "test@test.nl",
+    password: "123456",
+    valid: true
+  }),
   mounted() {
     this.$refs.username.focus()
   },
   methods: {
     async login() {
-      return this.$auth
-        .login({
-          data: {
-            username: this.username,
-            password: this.password
-          }
-        })
-        .catch(e => {
-          console.log(e.response)
-        })
+      if (this.$refs.form.validate()) {
+        return this.$auth
+          .login({
+            data: {
+              username: this.username,
+              password: this.password
+            }
+          })
+          .catch(e => {
+            console.log(e.response)
+          })
+      }
     },
     async logout() {
       return this.$auth.logout().catch(e => console.error(e.response))

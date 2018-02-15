@@ -135,7 +135,7 @@ module.exports = {
   csrf: {
     enable: Env.get("NODE_ENV") === "development" ? false : true,
     methods: ["POST", "PUT", "DELETE"],
-    filterUris: ["/api/login", "/api/users"],
+    filterUris: [],
     cookieOptions: {
       httpOnly: false,
       sameSite: true,

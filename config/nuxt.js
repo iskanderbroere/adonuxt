@@ -3,11 +3,8 @@
 const resolve = require("path").resolve
 
 module.exports = {
-  /*
-  ** Headers of the page
-  */
   head: {
-    title: "BONAS",
+    title: "Adonuxt",
     meta: [
       {
         charset: "utf-8"
@@ -19,7 +16,7 @@ module.exports = {
       {
         hid: "description",
         name: "description",
-        content: "BONAS project"
+        content: "Adonuxt project"
       }
     ],
     link: [
@@ -30,13 +27,11 @@ module.exports = {
       },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css?family=Roboto|Material+Icons"
+        href:
+          "https://fonts.googleapis.com/css?family=Work+Sans|Material+Icons|Bungee"
       }
     ]
   },
-  /*
-  ** Global CSS
-  */
   modules: ["@nuxtjs/axios", "@nuxtjs/auth"],
   auth: {
     endpoints: {
@@ -45,16 +40,8 @@ module.exports = {
       user: { url: "/api/user", method: "get", propertyName: false }
     },
     fetchUserOnLogin: true,
-    token: {
-      type: "Bearer",
-      name: "token"
-    },
-    cookie: {
-      name: "adonis-session",
-      options: {
-        path: "/"
-      }
-    }
+    token: false,
+    cookie: false
   },
   build: {
     vendor: ["~/plugins/vuetify.js"],
