@@ -55,6 +55,9 @@ module.exports = {
       }
     }
   },
+  router: {
+    middleware: ["auth"]
+  },
   plugins: ["~/plugins/vuetify.js", "~/plugins/axios"],
   build: {
     vendor: ["~/plugins/vuetify.js", "~/plugins/axios"],

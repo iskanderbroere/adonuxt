@@ -1,5 +1,5 @@
 <template>
-  <v-container grid-list-md>
+  <v-container grid-list-xl>
     <v-layout row wrap>
       <v-flex 
         v-for="(post, index) in localPosts"

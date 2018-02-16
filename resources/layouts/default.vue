@@ -40,6 +40,10 @@
         Adonuxt
       </v-toolbar-title>
       <v-spacer/>
+      <v-toolbar-items class="hidden-sm-and-down">
+        <v-btn flat>Link Two</v-btn>
+        <v-btn flat>Link Three</v-btn>
+      </v-toolbar-items>
     </v-toolbar>
     <v-content class="mt-4">
       <nuxt />
@@ -70,9 +74,7 @@ export default {
       ]
     }
   },
-  computed: mapState({
-    errors: "errors"
-  }),
+  computed: mapState(["errors", "auth"]),
   methods: {
     async logout() {
       try {

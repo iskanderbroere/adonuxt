@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development adonis serve --dev",
     "build": "nuxt build -c config/nuxt.js",
-    "start": "cross-env NODE_ENV=production node server.js",
+    "start": "cross-env NODE_ENV=production adonis serve",
     "precommit": "npm run lint",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "lintfix": "eslint --fix --ext .js,.vue --ignore-path .gitignore ."
